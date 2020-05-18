@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint":"eslint",
+    "lint:fix": "eslint --fix",
+    "reset:db": "npx sequelize-cli db:migrate:undo:all && sequelize db:migrate",
+    "refill:db": "npx sequelize-cli db:seed:all",
+    "respawn:db": "npm run reset:db && npm run refill:db"
   },
   "repository": {
     "type": "git",
