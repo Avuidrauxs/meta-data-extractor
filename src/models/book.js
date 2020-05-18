@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     author: DataTypes.STRING
   }, {});
   Book.associate = function(models) {
-    // associations can be defined here
+    Book.belongsTo(models.Publisher);
+    Book.hasOne(models.Books_meta, { as: 'metaData' });
   };
   return Book;
 };

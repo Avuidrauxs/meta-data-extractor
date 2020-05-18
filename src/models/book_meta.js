@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     license_rights: DataTypes.TEXT
   }, {});
   Book_meta.associate = function(models) {
-    // associations can be defined here
+    Book_meta.belongsTo(models.Book, { as: 'metadata' });
   };
   return Book_meta;
 };

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     publication_date: DataTypes.DATE
   }, {});
   Publisher.associate = function(models) {
-    // associations can be defined here
+    Publisher.hasMany(models.Book, { as: 'Books' })
   };
   return Publisher;
 };
