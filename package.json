@@ -1,0 +1,20 @@
+{
+  "name": "meta-data-extractor",
+  "version": "1.0.0",
+  "description": "This is a project built to extract a Publishers titles from an RDF file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avuidrauxs/meta-data-extractor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avuidrauxs/meta-data-extractor/issues"
+  },
+  "homepage": "https://github.com/Avuidrauxs/meta-data-extractor#readme"
+}
