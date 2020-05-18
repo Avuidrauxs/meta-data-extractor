@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Avuidrauxs/meta-data-extractor/issues"
   },
-  "homepage": "https://github.com/Avuidrauxs/meta-data-extractor#readme"
+  "homepage": "https://github.com/Avuidrauxs/meta-data-extractor#readme",
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  }
 }
