@@ -6,9 +6,9 @@
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "lint":"eslint",
+    "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "reset:db": "npx sequelize-cli db:migrate:undo:all && sequelize db:migrate",
+    "reset:db": "npx sequelize-cli db:migrate:undo:all && npx sequelize-cli db:migrate",
     "refill:db": "npx sequelize-cli db:seed:all",
     "respawn:db": "npm run reset:db && npm run refill:db"
   },
@@ -33,8 +33,12 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.25.3",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.9"
+    "sequelize": "^5.21.9",
+    "underscore": "^1.10.2",
+    "xml2js": "^0.4.23"
   }
 }
