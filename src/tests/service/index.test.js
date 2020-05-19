@@ -1,6 +1,7 @@
-const { insertIntoPG } = require('../../service');
-const { Publisher, Book, BookMeta } = require('../../models');
 const assert = require('assert');
+const { insertIntoPG, bulkInsertIntoPG } = require('../../service');
+const { Publisher, Book, BookMeta } = require('../../models');
+const { sequelize } = require('../../lib');
 
 const sample = {
   title: 'The Declaration of Independence of the United States of America',
@@ -12,9 +13,9 @@ const sample = {
 }
 
 describe('RDF DB Operations', () => {
-    // before( async () => {
-    //     await insertIntoPG(1);
-    // })
+    before( async () => {
+        await insertIntoPG(1);
+    })
     it('should insert valid Publisher details', async () => {
        Publisher.findAll({
            where: {
@@ -49,5 +50,28 @@ describe('RDF DB Operations', () => {
        assert.equal(bm[0].subjects, sample.subjects);
        })
     
+    });
+
+     it('should be able to bulk insert 20 items', async () => {
+       BookMeta.findAll({
+           where: {
+               id: 1
+           }
+       }).then(bm => {
+       assert.equal(bm[0].license_rights, sample.license_rights);
+       assert.equal(bm[0].subjects, sample.subjects);
+       })
+    
+    });
+})
+
+describe('RDF Bulk DB Operations', () => {
+    before( async () => {
+        await bulkInsertIntoPG(20);
+    })
+    it('should insert 10 or more items', async () => {
+       const publishers = await Publisher.findAll();
+       assert.equal(Array.isArray(publishers), true);
+       assert.equal(publishers.length > 10, true);
     });
 })

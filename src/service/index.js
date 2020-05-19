@@ -1,5 +1,5 @@
 const { Book, Publisher, BookMeta } = require('../models');
-const { grabAllRDFData } = require('../helpers');
+const { grabAllRDFData, grabAllRDFDataBulk } = require('../helpers');
 const { sequelize } = require('../lib');
 const path = require('path');
 
@@ -8,7 +8,7 @@ const path = require('path');
  * @param  {[type]}  rdfId [description]
  * @return {Promise}       [description]
  */
-const insertIntoPG = async (rdfId) => {
+const insertIntoPG = async (rdfId = 1) => {
   try {
     const data = await grabAllRDFData(rdfId);
     const {
@@ -42,6 +42,43 @@ const insertIntoPG = async (rdfId) => {
   }
 }
 
+const bulkInsertIntoPG = async (size) => {
+  try {
+    const data = await grabAllRDFDataBulk(size);
+    return data.forEach(item => {
+      let {
+      title,
+      author,
+      publication_date,
+      publisher,
+      subjects,
+      license_rights,
+    } = item;
+    return Publisher.create({
+      publication_date,
+      publisher,
+    }).then((pub) => {
+      Book.create({
+        title,
+        author,
+        publisher_id: pub.id,
+      }).then((book) => {
+        BookMeta.create({
+          subjects,
+          license_rights,
+          book_id: book.id,
+        })
+      })
+    }).catch((err) => {
+      console.log(err, 'failed');
+    })
+    })
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
 module.exports = {
-    insertIntoPG
+    insertIntoPG,
+    bulkInsertIntoPG
 }
