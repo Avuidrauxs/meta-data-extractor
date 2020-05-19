@@ -2,6 +2,13 @@ const fs = require('fs');
 const path = require('path');
 const { xmlToJs, _ } = require('../lib');
 
+/**
+ * This function helps evaluate whether a field is undefined
+ * returns a default value if true
+ * @param  {Function} fn         [description]
+ * @param  {[type]}   defaultVal [description]
+ * @return {[type]}              [description]
+ */
 const getSafe = (fn, defaultVal) => {
   try {
     return fn();
@@ -10,7 +17,11 @@ const getSafe = (fn, defaultVal) => {
   }
 }
 
-
+/**
+ * This grabs RDF data from the cache folder using their file number
+ * @param  {[type]} fileNumber [description]
+ * @return {[type]}            [description]
+ */
 const grabAllRDFData = fileNumber => new Promise((resolve, reject) => {
   const parser = new xmlToJs.Parser();
   const rdfFile = path.join(__dirname, `../../cache/epub/${fileNumber}/pg${fileNumber}.rdf`);
@@ -38,7 +49,10 @@ const grabAllRDFData = fileNumber => new Promise((resolve, reject) => {
   }
 })
 
-
+/**
+ * This function iterates through the entires cache/epub folder to add every
+ * @return {[type]} [description]
+ */
 const grabAllRDFDataBulk = () => new Promise(async (resolve, reject) => {
   const parser = new xmlToJs.Parser();
   const allData = [];

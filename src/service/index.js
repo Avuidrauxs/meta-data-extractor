@@ -3,6 +3,11 @@ const { grabAllRDFData } = require('../helpers');
 const { sequelize } = require('../lib');
 const path = require('path');
 
+/**
+ * This function inserts output from our RDF parsed data into our database
+ * @param  {[type]}  rdfId [description]
+ * @return {Promise}       [description]
+ */
 const insertIntoPG = async (rdfId) => {
   try {
     const data = await grabAllRDFData(rdfId);
@@ -40,4 +45,3 @@ const insertIntoPG = async (rdfId) => {
 module.exports = {
     insertIntoPG
 }
-// insertIntoDb();
