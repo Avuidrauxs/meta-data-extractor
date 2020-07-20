@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment": "^2.25.3",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
